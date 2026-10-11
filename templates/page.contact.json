@@ -1,0 +1,171 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "aqx_header": {
+      "type": "aqx-page-header",
+      "settings": {
+        "use_page_content": false,
+        "heading": "Contact us",
+        "text": "Questions about an order or which towel to choose? We are happy to help.",
+        "show_count": false,
+        "bundled_photo": "hero",
+        "size": "compact"
+      }
+    },
+    "aqx_contact": {
+      "type": "aqx-contact",
+      "blocks": {
+        "contact_form": {
+          "type": "contact-form",
+          "settings": {
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "custom",
+            "custom_width_mobile": 100,
+            "input_style": "custom",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "input_background_color": "#ffffff",
+            "input_text_color": "{{ settings.color_palette.foreground }}",
+            "input_border_color": "#b3bfce",
+            "border_width": 1,
+            "border_radius": 10
+          },
+          "blocks": {
+            "submit-button": {
+              "type": "contact-form-submit-button",
+              "static": true,
+              "settings": {
+                "label": "Submit",
+                "style_class": "button",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "contact_form"
+      ],
+      "settings": {
+        "heading": "Talk to the AquaBladeX team",
+        "text": "Send us a message with the form, or email us directly.",
+        "email_label": "Email",
+        "email": "support@example.com",
+        "address_label": "Company",
+        "address": "AquaBladeX\n[Company address]\n[Registration number]",
+        "delivery_label": "Delivery",
+        "delivery": "Benelux: 1 to 2 business days\nRest of Europe: 3 to 5 business days\nRest of the world: 5 to 10 business days",
+        "returns_label": "Returns",
+        "returns": "Within 14 days. Items must be unused, unwashed and in their original packaging.",
+        "form_heading": "Send us a message",
+        "background_color": "{{ settings.color_palette.color5 }}"
+      }
+    },
+    "aqx_faq": {
+      "type": "aqx-faq",
+      "blocks": {
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you ship and how long does it take?",
+            "answer": "<p>We ship worldwide. Delivery takes 1 to 2 business days in the Netherlands, Belgium and Luxembourg, 3 to 5 business days in the rest of Europe and 5 to 10 business days in the rest of the world.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "What does shipping cost?",
+            "answer": "<p>€4,95 in the Netherlands and Belgium and €6,95 in the rest of the EU. Shipping is free on orders over €50.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return my order?",
+            "answer": "<p>You can return your order within 14 days. Items must be unused, unwashed and in their original packaging. You pay the return shipping unless the product is defective.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_3",
+        "question_4",
+        "question_5"
+      ],
+      "settings": {
+        "heading": "Shipping and returns",
+        "subheading": "",
+        "open_first": true,
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    },
+    "aqx_guarantee": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns",
+            "subtext": "Unused, unwashed and in the original packaging"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout",
+            "subtext": "Pay safely with your usual method"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "pin",
+            "text": "Dutch registered company",
+            "subtext": "[City, country]. [Registration number]"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "mail",
+            "text": "Email support",
+            "subtext": "support@example.com"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "grid",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "icon_color": "{{ settings.color_palette.color1 }}"
+      }
+    }
+  },
+  "order": [
+    "aqx_header",
+    "aqx_contact",
+    "aqx_faq",
+    "aqx_guarantee"
+  ]
+}

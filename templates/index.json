@@ -1,0 +1,468 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "aqx_hero": {
+      "type": "aqx-hero",
+      "settings": {
+        "fallback_image": "hero",
+        "overlay_opacity": 90,
+        "min_height": 88,
+        "content_position": "bottom",
+        "heading": "Dry your car in minutes.",
+        "subheading": "No streaks. No scratches. Thick microfiber that absorbs water instantly and stays gentle on your paint.",
+        "button_label": "Shop DryMaster towels",
+        "button_link": "shopify://collections/all",
+        "link_label": "Which towel fits my car?",
+        "link_url": "shopify://collections/all"
+      }
+    },
+    "aqx_trust": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "truck",
+            "text": "Free EU shipping over €50"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "clock",
+            "text": "1 to 2 business days in the Benelux"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe on all paint and coatings"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "strip",
+        "background_color": "{{ settings.color_palette.color4 }}",
+        "icon_color": "{{ settings.color_palette.color6 }}"
+      }
+    },
+    "aqx_chooser": {
+      "type": "aqx-chooser",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "aquablade-x-drymaster-pro-towel",
+            "title": "DryMaster 1300",
+            "tagline": "For compact and mid-size cars. Easy to handle.",
+            "bundled_photo": "1300",
+            "single_price_label": "Price",
+            "button_label": "Choose DryMaster 1300"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "aquablade-x-drymaster-1400towel",
+            "title": "DryMaster 1400",
+            "tagline": "For SUVs, wagons and vans. Extra thick for bigger panels.",
+            "bundled_photo": "1400",
+            "single_price_label": "Price",
+            "button_label": "Choose DryMaster 1400"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2"
+      ],
+      "settings": {
+        "heading": "Two weights. Pick by the size of your car.",
+        "subheading": "Both dry without streaks or scratches. The 1400 is thicker and covers larger areas faster.",
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    },
+    "aqx_proof": {
+      "type": "aqx-photo-band",
+      "blocks": {
+        "fact_1": {
+          "type": "fact",
+          "settings": {
+            "icon": "layers",
+            "text": "1300 and 1400 GSM"
+          }
+        },
+        "fact_2": {
+          "type": "fact",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe on all paint, coatings and finishes"
+          }
+        },
+        "fact_3": {
+          "type": "fact",
+          "settings": {
+            "icon": "stitch",
+            "text": "Stitched edges, durable construction"
+          }
+        }
+      },
+      "block_order": [
+        "fact_1",
+        "fact_2",
+        "fact_3"
+      ],
+      "settings": {
+        "bundled_photo": "proof",
+        "mobile_focus": "center",
+        "content_position": "center",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "heading": "Absorbs water instantly. No streaks left behind.",
+        "text": "<p>GSM is the weight of the microfiber per square metre. A heavier towel has more fibre to hold water, so it absorbs what is on the panel instead of pushing it around.</p>",
+        "link_label": ""
+      }
+    },
+    "aqx_bundle": {
+      "type": "aqx-bundle-band",
+      "settings": {
+        "product": "aquablade-x-drymaster-pro-towel",
+        "heading": "Buy two, save 10%. Buy three for the best price per towel.",
+        "button_label": "Choose your bundle",
+        "show_bundled_photo": true,
+        "background_color": "{{ settings.color_palette.color1 }}"
+      }
+    },
+    "product_list_fa6P9H": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_YFtzcL": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h2>The full range</h2>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h2",
+                "font": "var(--font-body--family)",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_MWeP9V": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_YFtzcL",
+            "product_list_button_MWeP9V"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 10,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_677WP3": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 12,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_YXxMTj": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_JQzVV4": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h5",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_677WP3",
+            "product_title_YXxMTj",
+            "price_JQzVV4"
+          ]
+        }
+      },
+      "name": "t:names.product_list",
+      "settings": {
+        "collection": "all",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 16,
+        "rows_gap": 28,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "padding-block-start": 72,
+        "padding-block-end": 72
+      }
+    },
+    "aqx_story": {
+      "type": "aqx-photo-band",
+      "settings": {
+        "bundled_photo": "story",
+        "mobile_focus": "left",
+        "content_position": "bottom",
+        "background_color": "{{ settings.color_palette.color3 }}",
+        "heading": "Car enthusiasts, based in the Netherlands",
+        "text": "<p>We started AquaBladeX because too many microfiber towels either scratch the paint or don't absorb water efficiently.</p>",
+        "link_label": "Read our story",
+        "link_url": "shopify://pages/about"
+      }
+    },
+    "aqx_faq": {
+      "type": "aqx-faq",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Which DryMaster should I choose?",
+            "answer": "<p>The 1300 suits compact and mid-size cars and is easier to handle. The 1400 is extra thick and covers larger areas quickly, so it suits SUVs, wagons and vans.</p>"
+          }
+        },
+        "question_2": {
+          "type": "question",
+          "settings": {
+            "question": "Is it safe on coated paint?",
+            "answer": "<p>Yes. Both towels are safe on all paint types, coatings and finishes.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you ship and how long does it take?",
+            "answer": "<p>We ship worldwide. Delivery takes 1 to 2 business days in the Netherlands, Belgium and Luxembourg, 3 to 5 business days in the rest of Europe and 5 to 10 business days in the rest of the world.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "What does shipping cost?",
+            "answer": "<p>€4,95 in the Netherlands and Belgium and €6,95 in the rest of the EU. Shipping is free on orders over €50.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return my order?",
+            "answer": "<p>You can return your order within 14 days. Items must be unused, unwashed and in their original packaging. You pay the return shipping unless the product is defective.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_2",
+        "question_3",
+        "question_4",
+        "question_5"
+      ],
+      "settings": {
+        "heading": "Questions before you order",
+        "subheading": "",
+        "open_first": true,
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    },
+    "aqx_guarantee": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns",
+            "subtext": "Unused, unwashed and in the original packaging"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout",
+            "subtext": "Pay safely with your usual method"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "pin",
+            "text": "Dutch registered company",
+            "subtext": "[City, country]. [Registration number]"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "mail",
+            "text": "Email support",
+            "subtext": "support@example.com"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "grid",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "icon_color": "{{ settings.color_palette.color1 }}"
+      }
+    }
+  },
+  "order": [
+    "aqx_hero",
+    "aqx_trust",
+    "aqx_chooser",
+    "aqx_proof",
+    "aqx_bundle",
+    "product_list_fa6P9H",
+    "aqx_story",
+    "aqx_faq",
+    "aqx_guarantee"
+  ]
+}

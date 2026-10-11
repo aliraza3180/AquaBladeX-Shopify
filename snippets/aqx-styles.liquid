@@ -1,0 +1,96 @@
+{%- doc -%}
+  Shared style owner for the AquaBladeX custom sections (sections/aqx-*.liquid).
+  Render it once from each of those sections so the shared rules are always present.
+
+  @example
+  {% render 'aqx-styles' %}
+{%- enddoc -%}
+
+{% stylesheet %}
+  .aqx {
+    --aqx-obsidian: #05080d;
+    --aqx-midnight: #0b1626;
+    --aqx-steel: #1d2a3d;
+    --aqx-silver: #a9b6c9;
+    --aqx-cloud: #dce4ee;
+    --aqx-slate: #55607a;
+    --aqx-ink: #0a1220;
+    --aqx-ice: #e8f3ff;
+    --aqx-deep: #0351db;
+    --aqx-aqua: #38b9fb;
+    --aqx-radius: 16px;
+    --aqx-section-gap: clamp(3.5rem, 7vw, 6rem);
+
+    position: relative;
+    width: 100%;
+  }
+
+  .aqx-container {
+    width: min(var(--page-content-width, 90rem), calc(100% - var(--page-margin, 16px) * 2));
+    margin-inline: auto;
+    min-width: 0;
+  }
+
+  .aqx-pad {
+    padding-block: var(--aqx-section-gap);
+  }
+
+  .aqx-heading {
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .aqx-lede {
+    margin: 0.9rem 0 0;
+    max-width: 56ch;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+    font-size: 1.0625rem;
+  }
+
+  .aqx-center {
+    text-align: center;
+  }
+
+  .aqx-center .aqx-lede {
+    margin-inline: auto;
+  }
+
+  .aqx-text-link {
+    color: inherit;
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+  }
+
+  .aqx-tag {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 6px;
+    background: var(--aqx-ice);
+    color: var(--aqx-deep);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.5;
+    white-space: nowrap;
+  }
+
+  .aqx-icon {
+    flex: none;
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+
+  /* Heading on the left, content on the right from tablet up */
+  .aqx-split {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  @media screen and (min-width: 900px) {
+    .aqx-split {
+      grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+      gap: 4rem;
+      align-items: start;
+    }
+  }
+{% endstylesheet %}

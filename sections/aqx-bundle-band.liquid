@@ -1,0 +1,432 @@
+{% comment %}
+  Section contract.
+  The one full-colour band on the page. Shows the packages of a chosen product as three
+  cards, read live from its variants: name, price, price per towel and saving. Each card
+  links to the product page with that package selected.
+  @example
+  <!-- Pick the product whose packages should be shown. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+{% liquid
+  assign s = section.settings
+  assign product = s.product
+  assign link = s.button_link | default: product.url | default: routes.all_products_collection_url
+  assign single_price = product.variants.first.price
+%}
+
+<div class="aqx aqx-bundle aqx-pad color-custom-{{ section.id }}">
+  <div class="aqx-container aqx-bundle__grid">
+    <div class="aqx-bundle__copy">
+      {%- if s.image != blank -%}
+        {{
+          s.image
+          | image_url: width: 900
+          | image_tag: widths: '320, 520, 900', sizes: '260px', loading: 'lazy', class: 'aqx-bundle__art', alt: ''
+        }}
+      {%- elsif s.show_bundled_photo -%}
+        <img
+          class="aqx-bundle__art"
+          src="{{ 'aqx-bundle-stack.png' | asset_img_url: '640x' }}"
+          width="900"
+          height="675"
+          loading="lazy"
+          alt=""
+        >
+      {%- endif -%}
+
+      {%- if s.heading != blank -%}
+        <h2 class="aqx-heading aqx-bundle__heading h2">{{ s.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <p class="aqx-bundle__text">{{ s.text | escape }}</p>
+      {%- endif -%}
+
+      <div class="aqx-bundle__actions">
+        {%- if s.button_label != blank -%}
+          <a class="button aqx-bundle__button" href="{{ link }}">{{ s.button_label | escape }}</a>
+        {%- endif -%}
+        {%- if s.note != blank -%}
+          <span class="aqx-bundle__note">
+            {% render 'aqx-icon', name: 'truck' %}
+            {{ s.note | escape }}
+          </span>
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- if product != blank -%}
+      <ul class="aqx-bundle__steps" role="list">
+        {%- for variant in product.variants limit: 3 -%}
+          {%- liquid
+            # Variant titles look like "2 Towels – Save 10%": the number gives the quantity, the part after the dash the tag
+            assign parts = variant.title | split: ' – '
+            assign pack_name = parts | first
+            assign quantity = pack_name | split: ' ' | first | plus: 0
+            if quantity < 1
+              assign quantity = 1
+            endif
+            assign each = variant.price | times: 1.0 | divided_by: quantity | round
+            assign saving = single_price | times: quantity | minus: variant.price
+          -%}
+          <li class="aqx-bundle__step{% if forloop.last and forloop.length > 1 %} aqx-bundle__step--featured{% endif %}">
+            <a class="aqx-bundle__step-link" href="{{ variant.url }}">
+              <span class="aqx-bundle__step-top">
+                <span class="aqx-bundle__step-name">{{ pack_name | escape }}</span>
+                {%- if parts.size > 1 -%}
+                  <span class="aqx-tag">{{ parts | last | escape }}</span>
+                {%- endif -%}
+              </span>
+              <span class="aqx-bundle__price">{{ variant.price | money }}</span>
+              <span class="aqx-bundle__each">
+                {%- if quantity > 1 -%}
+                  {{ each | money }} {{ s.each_label | escape }}
+                {%- else -%}
+                  {{ s.single_label | escape }}
+                {%- endif -%}
+              </span>
+              <span class="aqx-bundle__saving">
+                {%- if saving > 0 -%}
+                  {{ s.saving_label | escape }} {{ saving | money }}
+                {%- else -%}
+                  &nbsp;
+                {%- endif -%}
+              </span>
+              <span class="aqx-bundle__choose">
+                {{ s.card_link_label | escape }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-bundle {
+    overflow: hidden;
+  }
+
+  .aqx-bundle__grid {
+    display: grid;
+    gap: 2.25rem;
+    align-items: center;
+  }
+
+  .aqx-bundle__art {
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: -0.75rem 0 0.5rem -0.6rem;
+  }
+
+  .aqx-bundle__heading {
+    max-width: 17ch;
+  }
+
+  .aqx-bundle__text {
+    max-width: 40ch;
+    margin: 0.9rem 0 0;
+    font-size: 1.0625rem;
+    opacity: 0.88;
+  }
+
+  .aqx-bundle__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem 1.5rem;
+    margin-top: 1.6rem;
+  }
+
+  /* White button on the blue band, using the theme's button shape and font */
+  .aqx-bundle .aqx-bundle__button.button {
+    --button-background-color: #fff;
+    --button-color: var(--aqx-ink);
+    --button-border-color: #fff;
+
+    min-height: 3.4rem;
+    padding-inline: 1.75rem;
+    font-size: 1rem;
+  }
+
+  .aqx-bundle .aqx-bundle__button.button:hover {
+    --button-background-color: var(--aqx-ice);
+    --button-border-color: var(--aqx-ice);
+  }
+
+  .aqx-bundle__note {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .aqx-bundle__note .aqx-icon {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .aqx-bundle__steps {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .aqx-bundle__step {
+    min-width: 0;
+    border-radius: var(--aqx-radius);
+    background: #fff;
+    color: var(--aqx-ink);
+    box-shadow: 0 18px 40px -26px rgb(5 8 13 / 0.55);
+    transition: transform var(--animation-speed, 0.2s) var(--animation-easing, ease);
+  }
+
+  .aqx-bundle__step:hover {
+    transform: translateY(-3px);
+  }
+
+  .aqx-bundle__step-link {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.15rem 1rem;
+    height: 100%;
+    padding: 1.1rem 1.2rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .aqx-bundle__step-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+  }
+
+  .aqx-bundle__price {
+    grid-row: span 2;
+    font-family: var(--font-heading--family);
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+    text-align: end;
+  }
+
+  .aqx-bundle__each {
+    color: var(--aqx-slate);
+    font-size: 0.9rem;
+  }
+
+  .aqx-bundle__saving,
+  .aqx-bundle__choose {
+    display: none;
+  }
+
+  /* The last package is the best value: it gets the dark card */
+  .aqx-bundle__step--featured {
+    background: var(--aqx-obsidian);
+    color: #fff;
+  }
+
+  .aqx-bundle__step--featured .aqx-bundle__each {
+    color: var(--aqx-silver);
+  }
+
+  .aqx-bundle__step--featured .aqx-tag {
+    background: var(--aqx-aqua);
+    color: var(--aqx-obsidian);
+  }
+
+  @media screen and (min-width: 750px) {
+    .aqx-bundle__steps {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .aqx-bundle__step-link {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0;
+      padding: 1.4rem 1.35rem 1.3rem;
+    }
+
+    .aqx-bundle__step-top {
+      min-height: 3.4rem;
+      align-content: flex-start;
+    }
+
+    .aqx-bundle__price {
+      margin-top: 0.6rem;
+      font-size: clamp(1.6rem, 2.4vw, 2.1rem);
+      text-align: start;
+    }
+
+    .aqx-bundle__each {
+      margin-top: 0.2rem;
+    }
+
+    .aqx-bundle__saving {
+      display: block;
+      margin-top: 0.9rem;
+      padding-top: 0.9rem;
+      width: 100%;
+      border-top: 1px solid rgb(127 140 160 / 0.28);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .aqx-bundle__choose {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: auto;
+      padding-top: 0.9rem;
+      color: var(--aqx-deep);
+      font-family: var(--font-heading--family);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+
+    .aqx-bundle__choose svg {
+      width: 1.05rem;
+      height: 1.05rem;
+    }
+
+    .aqx-bundle__step--featured .aqx-bundle__choose {
+      color: var(--aqx-aqua);
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .aqx-bundle__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+      gap: 4rem;
+    }
+
+    .aqx-bundle__art {
+      width: 190px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aqx-bundle__step {
+      transition: none;
+    }
+
+    .aqx-bundle__step:hover {
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX bundle band",
+  "tag": "section",
+  "class": "aqx-section",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product",
+      "info": "The package names and prices come from this product's variants."
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Buy two, save 10%. Buy three for the best price per towel."
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Supporting text",
+      "default": "Same towel, lower price for each one."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Choose your bundle"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "info": "Leave empty to link to the product."
+    },
+    {
+      "type": "text",
+      "id": "note",
+      "label": "Note beside the button",
+      "default": "Free EU shipping over €50"
+    },
+    {
+      "type": "header",
+      "content": "Package cards"
+    },
+    {
+      "type": "text",
+      "id": "single_label",
+      "label": "Line under the single price",
+      "default": "Single towel"
+    },
+    {
+      "type": "text",
+      "id": "each_label",
+      "label": "Label after the price for each",
+      "default": "per towel"
+    },
+    {
+      "type": "text",
+      "id": "saving_label",
+      "label": "Label before the saving",
+      "default": "You save"
+    },
+    {
+      "type": "text",
+      "id": "card_link_label",
+      "label": "Card link label",
+      "default": "Choose"
+    },
+    {
+      "type": "header",
+      "content": "Image and colour"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Product cut-out",
+      "info": "A transparent PNG works best."
+    },
+    {
+      "type": "checkbox",
+      "id": "show_bundled_photo",
+      "label": "Show the bundled towel stack when no cut-out is chosen",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0a6ce6"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX bundle band"
+    }
+  ]
+}
+{% endschema %}

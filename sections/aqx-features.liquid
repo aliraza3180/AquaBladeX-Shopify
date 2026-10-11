@@ -1,0 +1,165 @@
+{% comment %}
+  Section contract.
+  A heading with up to four feature cards, each with an icon, a title and one line of text.
+  Used under the product details to explain why the product works.
+  @example
+  <!-- Add one "Feature" block per card. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+<div class="aqx aqx-features aqx-pad color-custom-{{ section.id }}">
+  <div class="aqx-container">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="aqx-heading h2">{{ section.settings.heading | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="aqx-lede">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+
+    <ul class="aqx-features__grid" role="list" style="--aqx-feature-count: {{ section.blocks.size }};">
+      {%- for block in section.blocks -%}
+        <li class="aqx-features__card" {{ block.shopify_attributes }}>
+          <span class="aqx-features__icon">{% render 'aqx-icon', name: block.settings.icon %}</span>
+          <h3 class="aqx-features__title h5">{{ block.settings.title | escape }}</h3>
+          {%- if block.settings.text != blank -%}
+            <p class="aqx-features__text">{{ block.settings.text | escape }}</p>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-features__grid {
+    display: grid;
+    gap: 0.9rem;
+    margin: 2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .aqx-features__card {
+    min-width: 0;
+    padding: 1.5rem 1.4rem 1.6rem;
+    border: 1px solid var(--aqx-cloud);
+    border-radius: var(--aqx-radius);
+    background: #fff;
+    color: var(--aqx-ink);
+  }
+
+  .aqx-features__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    border-radius: 10px;
+    background: var(--aqx-ice);
+    color: var(--aqx-deep);
+  }
+
+  .aqx-features__title.h5 {
+    margin: 1.1rem 0 0;
+    color: var(--aqx-ink);
+    font-family: var(--font-heading--family);
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+
+  .aqx-features__text {
+    margin: 0.4rem 0 0;
+    color: var(--aqx-slate);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  @media screen and (min-width: 600px) {
+    .aqx-features__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+  }
+
+  @media screen and (min-width: 990px) {
+    .aqx-features__grid {
+      grid-template-columns: repeat(var(--aqx-feature-count, 4), minmax(0, 1fr));
+      margin-top: 2.75rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX features",
+  "tag": "section",
+  "class": "aqx-section",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why drivers choose DryMaster"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Supporting text"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f2f6fa"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "drop", "label": "Water drop" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "layers", "label": "Layers" },
+            { "value": "stitch", "label": "Stitched edge" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "return", "label": "Return arrow" }
+          ],
+          "default": "drop"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Absorbs water instantly"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX features",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

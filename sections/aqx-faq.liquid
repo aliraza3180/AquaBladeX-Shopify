@@ -1,0 +1,163 @@
+{% comment %}
+  Section contract.
+  Questions and answers: heading on the left, expandable questions on the right.
+  Uses native details/summary, so it works without JavaScript.
+  @example
+  <!-- Add one "Question" block per question. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+<div class="aqx aqx-faq aqx-pad color-custom-{{ section.id }}">
+  <div class="aqx-container aqx-split">
+    <div>
+      {%- if section.settings.heading != blank -%}
+        <h2 class="aqx-heading h2">{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <p class="aqx-lede">{{ section.settings.subheading | escape }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="aqx-faq__list">
+      {%- for block in section.blocks -%}
+        <details
+          class="aqx-faq__item"
+          {% if forloop.first and section.settings.open_first %}
+            open
+          {% endif %}
+          {{ block.shopify_attributes }}
+        >
+          <summary class="aqx-faq__question">
+            <span>{{ block.settings.question | escape }}</span>
+            <svg class="aqx-faq__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <path d="m6 9 6 6 6-6"/>
+            </svg>
+          </summary>
+          <div class="aqx-faq__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-faq__item {
+    border-bottom: 1px solid rgb(var(--color-foreground-rgb) / 0.14);
+  }
+
+  .aqx-faq__item:first-child {
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.14);
+  }
+
+  .aqx-faq__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.25rem 0;
+    font-size: 1.0625rem;
+    font-weight: 500;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .aqx-faq__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .aqx-faq__chevron {
+    flex: none;
+    width: 1.25rem;
+    height: 1.25rem;
+    transition: transform var(--animation-speed, 0.2s) var(--animation-easing, ease);
+  }
+
+  .aqx-faq__item[open] .aqx-faq__chevron {
+    transform: rotate(180deg);
+  }
+
+  .aqx-faq__answer {
+    max-width: 62ch;
+    padding-bottom: 1.4rem;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+  }
+
+  .aqx-faq__answer > :first-child {
+    margin-top: 0;
+  }
+
+  .aqx-faq__answer > :last-child {
+    margin-bottom: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aqx-faq__chevron {
+      transition: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX questions",
+  "tag": "section",
+  "class": "aqx-section",
+  "max_blocks": 12,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Questions before you order"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Supporting text"
+    },
+    {
+      "type": "checkbox",
+      "id": "open_first",
+      "label": "Open the first question",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Question",
+          "default": "Can I return my order?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Answer",
+          "default": "<p>Yes, within 14 days. Items must be unused, unwashed and in their original packaging.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX questions",
+      "blocks": [
+        { "type": "question" },
+        { "type": "question" }
+      ]
+    }
+  ]
+}
+{% endschema %}

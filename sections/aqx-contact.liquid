@@ -1,0 +1,259 @@
+{% comment %}
+  Section contract.
+  Contact page layout: company details on the left, a card on the right that holds the
+  theme's own contact form block.
+  @example
+  <!-- Add the theme's "Contact form" block inside this section. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+{%- liquid
+  assign s = section.settings
+-%}
+
+<div class="aqx aqx-contact aqx-pad color-custom-{{ section.id }}">
+  <div class="aqx-container aqx-contact__grid">
+    <div class="aqx-contact__details">
+      {%- if s.heading != blank -%}
+        <h2 class="aqx-heading h3">{{ s.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <p class="aqx-lede">{{ s.text | escape }}</p>
+      {%- endif -%}
+
+      <dl class="aqx-contact__list">
+        {%- if s.email != blank -%}
+          <div class="aqx-contact__row">
+            <span class="aqx-contact__icon">{% render 'aqx-icon', name: 'mail' %}</span>
+            <div>
+              <dt>{{ s.email_label | escape }}</dt>
+              <dd><a href="mailto:{{ s.email | escape }}">{{ s.email | escape }}</a></dd>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if s.address != blank -%}
+          <div class="aqx-contact__row">
+            <span class="aqx-contact__icon">{% render 'aqx-icon', name: 'pin' %}</span>
+            <div>
+              <dt>{{ s.address_label | escape }}</dt>
+              <dd>{{ s.address | escape | newline_to_br }}</dd>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if s.delivery != blank -%}
+          <div class="aqx-contact__row">
+            <span class="aqx-contact__icon">{% render 'aqx-icon', name: 'truck' %}</span>
+            <div>
+              <dt>{{ s.delivery_label | escape }}</dt>
+              <dd>{{ s.delivery | escape | newline_to_br }}</dd>
+            </div>
+          </div>
+        {%- endif -%}
+        {%- if s.returns != blank -%}
+          <div class="aqx-contact__row">
+            <span class="aqx-contact__icon">{% render 'aqx-icon', name: 'return' %}</span>
+            <div>
+              <dt>{{ s.returns_label | escape }}</dt>
+              <dd>{{ s.returns | escape | newline_to_br }}</dd>
+            </div>
+          </div>
+        {%- endif -%}
+      </dl>
+    </div>
+
+    <div class="aqx-contact__card">
+      {%- if s.form_heading != blank -%}
+        <h2 class="aqx-contact__card-heading h4">{{ s.form_heading | escape }}</h2>
+      {%- endif -%}
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-contact__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .aqx-contact__list {
+    display: grid;
+    gap: 1.4rem;
+    margin: 2rem 0 0;
+  }
+
+  .aqx-contact__row {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .aqx-contact__icon {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: 10px;
+    background: var(--aqx-ice);
+    color: var(--aqx-deep);
+  }
+
+  .aqx-contact__row dt {
+    font-family: var(--font-heading--family);
+    font-weight: 800;
+  }
+
+  .aqx-contact__row dd {
+    margin: 0.15rem 0 0;
+    color: rgb(var(--color-foreground-rgb) / 0.74);
+    line-height: 1.55;
+  }
+
+  .aqx-contact__row a {
+    color: var(--aqx-deep);
+    font-weight: 500;
+    text-underline-offset: 4px;
+  }
+
+  .aqx-contact__card {
+    padding: 1.5rem 1.25rem 1.75rem;
+    border: 1px solid var(--aqx-cloud);
+    border-radius: var(--aqx-radius);
+    background: #fff;
+    color: var(--aqx-ink);
+  }
+
+  .aqx-contact__card-heading.h4 {
+    margin: 0 0 1.25rem;
+    color: var(--aqx-ink);
+  }
+
+  /* The theme's contact form fills the card */
+  .aqx-contact__card .contact-form,
+  .aqx-contact__card form {
+    width: 100%;
+    max-width: none;
+  }
+
+  @media screen and (min-width: 900px) {
+    .aqx-contact__grid {
+      grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .aqx-contact__card {
+      padding: 2.25rem 2.25rem 2.5rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX contact",
+  "tag": "section",
+  "class": "aqx-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We are happy to help"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "Questions about an order or which towel to choose? Send us a message or email us directly."
+    },
+    {
+      "type": "header",
+      "content": "Details"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address",
+      "default": "support@example.com"
+    },
+    {
+      "type": "text",
+      "id": "address_label",
+      "label": "Company label",
+      "default": "Company"
+    },
+    {
+      "type": "textarea",
+      "id": "address",
+      "label": "Company details",
+      "default": "AquaBladeX\n[Company address]\n[Registration number]"
+    },
+    {
+      "type": "text",
+      "id": "delivery_label",
+      "label": "Delivery label",
+      "default": "Delivery"
+    },
+    {
+      "type": "textarea",
+      "id": "delivery",
+      "label": "Delivery details"
+    },
+    {
+      "type": "text",
+      "id": "returns_label",
+      "label": "Returns label",
+      "default": "Returns"
+    },
+    {
+      "type": "textarea",
+      "id": "returns",
+      "label": "Returns details"
+    },
+    {
+      "type": "header",
+      "content": "Form card"
+    },
+    {
+      "type": "text",
+      "id": "form_heading",
+      "label": "Form heading",
+      "default": "Send us a message"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#f2f6fa"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@theme"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX contact",
+      "blocks": [
+        {
+          "type": "contact-form"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

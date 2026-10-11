@@ -1,0 +1,43 @@
+{%- doc -%}
+  Renders one of the AquaBladeX line icons as an inline, decorative SVG.
+
+  @param {string} name - Icon name: truck, clock, return, shield, layers, stitch, lock, pin, mail or drop
+
+  @example
+  {% render 'aqx-icon', name: 'truck' %}
+{%- enddoc -%}
+
+<svg
+  class="aqx-icon"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  focusable="false"
+>
+  {%- case name -%}
+    {%- when 'truck' -%}
+      <path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7.5" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/>
+    {%- when 'clock' -%}
+      <circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>
+    {%- when 'return' -%}
+      <path d="M4 9h11a5 5 0 0 1 0 10H9"/><path d="M8 5 4 9l4 4"/>
+    {%- when 'layers' -%}
+      <path d="m12 4 8 4-8 4-8-4 8-4Z"/><path d="m4 12 8 4 8-4"/><path d="m4 16 8 4 8-4"/>
+    {%- when 'stitch' -%}
+      <rect x="4" y="5" width="16" height="14" rx="2"/><path d="M7.5 8.5h9M7.5 15.5h9" stroke-dasharray="2 2.4"/>
+    {%- when 'lock' -%}
+      <rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/>
+    {%- when 'pin' -%}
+      <path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11Z"/><circle cx="12" cy="10" r="2.3"/>
+    {%- when 'mail' -%}
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4 7 8 6 8-6"/>
+    {%- when 'drop' -%}
+      <path d="M12 3.5s6 6.2 6 10.5a6 6 0 0 1-12 0c0-4.3 6-10.5 6-10.5Z"/>
+    {%- else -%}
+      <path d="M12 3 5 6v5.5c0 4.2 2.9 7.6 7 9.5 4.1-1.9 7-5.3 7-9.5V6l-7-3Z"/><path d="m9 12 2.2 2.2L15 10.5"/>
+  {%- endcase -%}
+</svg>

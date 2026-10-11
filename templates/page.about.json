@@ -1,0 +1,103 @@
+{
+  "sections": {
+    "aqx_hero": {
+      "type": "aqx-hero",
+      "settings": {
+        "fallback_image": "proof",
+        "overlay_opacity": 88,
+        "min_height": 62,
+        "content_position": "bottom",
+        "heading": "Car enthusiasts, obsessed with a perfect finish.",
+        "subheading": "AquaBladeX is a team of car enthusiasts who care about perfection, car care and the ultimate gloss finish.",
+        "button_label": "",
+        "link_label": ""
+      }
+    },
+    "aqx_facts": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "pin",
+            "text": "[City, country]",
+            "subtext": "Based and registered here"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "truck",
+            "text": "Across Europe",
+            "subtext": "Delivered in 1 to 5 business days"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "layers",
+            "text": "High-GSM microfiber",
+            "subtext": "Professional-grade towels"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns",
+            "subtext": "On every order"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "grid",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "icon_color": "{{ settings.color_palette.color1 }}"
+      }
+    },
+    "aqx_story": {
+      "type": "aqx-text",
+      "settings": {
+        "layout": "split",
+        "heading": "Why we started",
+        "text": "<p>We noticed that many microfiber towels on the market either scratch the paint or don't absorb water efficiently.</p><p>We founded AquaBladeX to solve that problem, by bringing professional-grade, high-GSM microfiber towels and detailing gear to everyday car lovers.</p><p>We are proudly based and registered in the Netherlands, and we operate across Europe.</p>",
+        "button_label": "",
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    },
+    "aqx_mission": {
+      "type": "aqx-text",
+      "settings": {
+        "layout": "statement",
+        "heading": "Our mission is to make car drying and polishing safe, fast and satisfying.",
+        "text": "<p>The AquaBladeX team</p>",
+        "button_label": "Shop DryMaster towels",
+        "button_link": "shopify://collections/all",
+        "background_color": "{{ settings.color_palette.color3 }}"
+      }
+    },
+    "aqx_contact": {
+      "type": "aqx-text",
+      "settings": {
+        "layout": "split",
+        "heading": "Get in touch",
+        "text": "<p>Questions about an order or which towel to choose? Email <a href=\"mailto:support@example.com\">support@example.com</a>.</p><p>AquaBladeX, [Company address]. [Registration number].</p>",
+        "button_label": "",
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    }
+  },
+  "order": [
+    "aqx_hero",
+    "aqx_facts",
+    "aqx_story",
+    "aqx_mission",
+    "aqx_contact"
+  ]
+}

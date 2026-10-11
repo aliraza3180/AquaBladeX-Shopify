@@ -1,0 +1,246 @@
+{% comment %}
+  Section contract.
+  A row of short reassurance points, each with a line icon.
+  "Strip" is the compact bar under the hero; "Grid" is the larger row above the footer.
+  @example
+  <!-- Add up to six "Point" blocks. Pick the layout in the section settings. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+<div
+  class="aqx aqx-icon-row aqx-icon-row--{{ section.settings.layout }} color-custom-{{ section.id }}"
+  style="--aqx-icon-color: {{ section.settings.icon_color | default: 'currentColor' }}; --aqx-icon-count: {{ section.blocks.size }};"
+>
+  <div class="aqx-container">
+    <ul class="aqx-icon-row__list" role="list">
+      {%- for block in section.blocks -%}
+        <li class="aqx-icon-row__item" {{ block.shopify_attributes }}>
+          {% render 'aqx-icon', name: block.settings.icon %}
+          <span class="aqx-icon-row__text">
+            {{- block.settings.text | escape -}}
+            {%- if block.settings.subtext != blank -%}
+              <span class="aqx-icon-row__subtext">{{ block.settings.subtext | escape }}</span>
+            {%- endif -%}
+          </span>
+        </li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-icon-row__list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .aqx-icon-row__item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    font-weight: 500;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+  }
+
+  .aqx-icon-row .aqx-icon {
+    color: var(--aqx-icon-color);
+  }
+
+  .aqx-icon-row__subtext {
+    display: block;
+    margin-top: 0.15rem;
+    font-weight: 400;
+    font-size: 0.875rem;
+    opacity: 0.72;
+  }
+
+  /* Strip: compact bar */
+  .aqx-icon-row--strip {
+    border-block: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  .aqx-icon-row--strip .aqx-icon-row__item {
+    padding: 1.1rem 0.75rem 1.1rem 0;
+    font-size: 0.9rem;
+  }
+
+  .aqx-icon-row--strip .aqx-icon-row__item:nth-child(n + 3) {
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+  }
+
+  /* Grid: a row of cards, each with an icon tile, a bold title and one supporting line.
+     Card and tile colours are mixed from the section's own text and icon colours, so the
+     row works on light and dark backgrounds. */
+  .aqx-icon-row--grid {
+    padding-block: clamp(2.75rem, 5vw, 4.25rem);
+  }
+
+  .aqx-icon-row--grid .aqx-icon-row__list {
+    gap: 0.75rem;
+  }
+
+  .aqx-icon-row--grid .aqx-icon-row__item {
+    align-items: flex-start;
+    gap: 0.9rem;
+    padding: 1.15rem 1.1rem;
+    border: 1px solid rgb(var(--color-foreground-rgb) / 0.12);
+    border-radius: var(--aqx-radius);
+    background: rgb(var(--color-foreground-rgb) / 0.035);
+    font-family: var(--font-heading--family);
+    font-size: 1.02rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .aqx-icon-row--grid .aqx-icon {
+    box-sizing: content-box;
+    width: 1.5rem;
+    height: 1.5rem;
+    padding: 0.7rem;
+    border-radius: 12px;
+    background: color-mix(in srgb, var(--aqx-icon-color) 16%, transparent);
+  }
+
+  .aqx-icon-row--grid .aqx-icon-row__text {
+    padding-top: 0.2rem;
+  }
+
+  .aqx-icon-row--grid .aqx-icon-row__subtext {
+    margin-top: 0.3rem;
+    font-family: var(--font-body--family);
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 1.45;
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 599px) {
+    .aqx-icon-row--grid .aqx-icon-row__list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .aqx-icon-row--grid .aqx-icon-row__list {
+      gap: 1.25rem;
+    }
+
+    .aqx-icon-row--grid .aqx-icon-row__item {
+      flex-direction: column;
+      gap: 1.1rem;
+      padding: 1.6rem 1.5rem 1.7rem;
+      font-size: 1.1rem;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    .aqx-icon-row__list {
+      grid-template-columns: repeat(var(--aqx-icon-count, 4), minmax(0, 1fr));
+    }
+
+    .aqx-icon-row--strip .aqx-icon-row__list {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .aqx-icon-row--strip .aqx-icon-row__item {
+      padding: 1.5rem 0;
+      font-size: 0.975rem;
+    }
+
+    .aqx-icon-row--strip .aqx-icon-row__item:nth-child(n + 3) {
+      border-top: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX icon row",
+  "tag": "section",
+  "class": "aqx-section",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "strip", "label": "Strip (compact bar)" },
+        { "value": "grid", "label": "Grid (icon above text)" }
+      ],
+      "default": "strip"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#0b1626"
+    },
+    {
+      "type": "color",
+      "id": "icon_color",
+      "label": "Icon colour",
+      "default": "#38b9fb"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "point",
+      "name": "Point",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Delivery truck" },
+            { "value": "clock", "label": "Clock" },
+            { "value": "return", "label": "Return arrow" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "layers", "label": "Layers" },
+            { "value": "stitch", "label": "Stitched edge" },
+            { "value": "lock", "label": "Lock" },
+            { "value": "pin", "label": "Map pin" },
+            { "value": "mail", "label": "Envelope" },
+            { "value": "drop", "label": "Water drop" }
+          ],
+          "default": "shield"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "14-day returns"
+        },
+        {
+          "type": "text",
+          "id": "subtext",
+          "label": "Second line"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX icon row",
+      "blocks": [
+        { "type": "point", "settings": { "icon": "truck", "text": "Free EU shipping over €50" } },
+        { "type": "point", "settings": { "icon": "clock", "text": "1 to 2 business days in the Benelux" } },
+        { "type": "point", "settings": { "icon": "return", "text": "14-day returns" } },
+        { "type": "point", "settings": { "icon": "shield", "text": "Safe on all paint and coatings" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

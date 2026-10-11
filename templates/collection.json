@@ -1,0 +1,329 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */{
+  "sections": {
+    "aqx_header": {
+      "type": "aqx-page-header",
+      "settings": {
+        "use_page_content": true,
+        "show_count": true,
+        "count_label_one": "product",
+        "count_label_many": "products",
+        "bundled_photo": "proof",
+        "size": "compact"
+      }
+    },
+    "aqx_trust": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "truck",
+            "text": "Free EU shipping over €50"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "clock",
+            "text": "1 to 2 business days in the Benelux"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "shield",
+            "text": "Safe on all paint and coatings"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "strip",
+        "background_color": "{{ settings.color_palette.color4 }}",
+        "icon_color": "{{ settings.color_palette.color6 }}"
+      }
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": false,
+            "filter_style": "horizontal",
+            "filter_width": "centered",
+            "text_label_case": "default",
+            "show_swatch_label": false,
+            "show_filter_label": false,
+            "enable_sorting": true,
+            "enable_grid_density": false,
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "facets_margin_bottom": 8,
+            "facets_margin_right": 20
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 12,
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "square",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 14,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_4nY4eT": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h5",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_EzJzMm": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h5",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "card-gallery",
+            "product_title_4nY4eT",
+            "price_EzJzMm"
+          ]
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "medium",
+        "mobile_product_card_size": "small",
+        "product_grid_width": "centered",
+        "full_width_on_mobile": false,
+        "columns_gap_horizontal": 20,
+        "columns_gap_vertical": 36,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "background_color": "{{ settings.color_palette.background }}",
+        "padding-block-start": 40,
+        "padding-block-end": 72
+      },
+      "custom_css": [
+        ".product-grid { --product-grid-columns-desktop: repeat(4, minmax(0, 1fr)); }"
+      ]
+    },
+    "aqx_chooser": {
+      "type": "aqx-chooser",
+      "blocks": {
+        "product_1": {
+          "type": "product",
+          "settings": {
+            "product": "aquablade-x-drymaster-pro-towel",
+            "title": "DryMaster 1300",
+            "tagline": "For compact and mid-size cars. Easy to handle.",
+            "bundled_photo": "1300",
+            "single_price_label": "Price",
+            "button_label": "Choose DryMaster 1300"
+          }
+        },
+        "product_2": {
+          "type": "product",
+          "settings": {
+            "product": "aquablade-x-drymaster-1400towel",
+            "title": "DryMaster 1400",
+            "tagline": "For SUVs, wagons and vans. Extra thick for bigger panels.",
+            "bundled_photo": "1400",
+            "single_price_label": "Price",
+            "button_label": "Choose DryMaster 1400"
+          }
+        }
+      },
+      "block_order": [
+        "product_1",
+        "product_2"
+      ],
+      "settings": {
+        "heading": "Not sure which towel?",
+        "subheading": "Pick by the size of your car. Both dry without streaks or scratches.",
+        "background_color": "{{ settings.color_palette.color5 }}"
+      }
+    },
+    "aqx_faq": {
+      "type": "aqx-faq",
+      "blocks": {
+        "question_1": {
+          "type": "question",
+          "settings": {
+            "question": "Which DryMaster should I choose?",
+            "answer": "<p>The 1300 suits compact and mid-size cars and is easier to handle. The 1400 is extra thick and covers larger areas quickly, so it suits SUVs, wagons and vans.</p>"
+          }
+        },
+        "question_3": {
+          "type": "question",
+          "settings": {
+            "question": "Where do you ship and how long does it take?",
+            "answer": "<p>We ship worldwide. Delivery takes 1 to 2 business days in the Netherlands, Belgium and Luxembourg, 3 to 5 business days in the rest of Europe and 5 to 10 business days in the rest of the world.</p>"
+          }
+        },
+        "question_4": {
+          "type": "question",
+          "settings": {
+            "question": "What does shipping cost?",
+            "answer": "<p>€4,95 in the Netherlands and Belgium and €6,95 in the rest of the EU. Shipping is free on orders over €50.</p>"
+          }
+        },
+        "question_5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return my order?",
+            "answer": "<p>You can return your order within 14 days. Items must be unused, unwashed and in their original packaging. You pay the return shipping unless the product is defective.</p>"
+          }
+        }
+      },
+      "block_order": [
+        "question_1",
+        "question_3",
+        "question_4",
+        "question_5"
+      ],
+      "settings": {
+        "heading": "Questions before you order",
+        "subheading": "",
+        "open_first": true,
+        "background_color": "{{ settings.color_palette.background }}"
+      }
+    },
+    "aqx_guarantee": {
+      "type": "aqx-icon-row",
+      "blocks": {
+        "point_1": {
+          "type": "point",
+          "settings": {
+            "icon": "return",
+            "text": "14-day returns",
+            "subtext": "Unused, unwashed and in the original packaging"
+          }
+        },
+        "point_2": {
+          "type": "point",
+          "settings": {
+            "icon": "lock",
+            "text": "Secure checkout",
+            "subtext": "Pay safely with your usual method"
+          }
+        },
+        "point_3": {
+          "type": "point",
+          "settings": {
+            "icon": "pin",
+            "text": "Dutch registered company",
+            "subtext": "[City, country]. [Registration number]"
+          }
+        },
+        "point_4": {
+          "type": "point",
+          "settings": {
+            "icon": "mail",
+            "text": "Email support",
+            "subtext": "support@example.com"
+          }
+        }
+      },
+      "block_order": [
+        "point_1",
+        "point_2",
+        "point_3",
+        "point_4"
+      ],
+      "settings": {
+        "layout": "grid",
+        "background_color": "{{ settings.color_palette.color5 }}",
+        "icon_color": "{{ settings.color_palette.color1 }}"
+      }
+    }
+  },
+  "order": [
+    "aqx_header",
+    "aqx_trust",
+    "main",
+    "aqx_chooser",
+    "aqx_faq",
+    "aqx_guarantee"
+  ]
+}

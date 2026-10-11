@@ -1,0 +1,305 @@
+{% comment %}
+  Section contract.
+  Full-width dark photo with text on the right. Used for the proof band and the brand story.
+  On phones the photo sits above the text.
+  @example
+  <!-- Optional "Fact" blocks add a row of short points under the text. -->
+{% endcomment %}
+
+{% render 'aqx-styles' %}
+{% render 'contrast-override', background_color: section.settings.background_color, section_id: section.id %}
+
+{% liquid
+  assign s = section.settings
+  case s.bundled_photo
+    when 'story'
+      assign fallback = 'aqx-story-workbench.jpg'
+    else
+      assign fallback = 'aqx-proof-macro.jpg'
+  endcase
+%}
+
+<div
+  class="aqx aqx-band aqx-band--{{ s.content_position }} aqx-band--focus-{{ s.mobile_focus }} color-custom-{{ section.id }}"
+  style="--aqx-band-bg: {{ s.background_color.rgb | default: '5 8 13' }};"
+>
+  <div class="aqx-band__media">
+    {%- if s.image != blank -%}
+      {{
+        s.image
+        | image_url: width: 2400
+        | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: 'lazy', alt: s.image.alt | default: s.heading
+      }}
+    {%- else -%}
+      <img
+        src="{{ fallback | asset_img_url: '2000x' }}"
+        srcset="{{ fallback | asset_img_url: '1100x' }} 1100w, {{ fallback | asset_img_url: '2000x' }} 2000w, {{ fallback | asset_img_url: '2560x' }} 2560w"
+        sizes="100vw"
+        width="2560"
+        height="1440"
+        loading="lazy"
+        alt="{{ s.heading | escape }}"
+      >
+    {%- endif -%}
+  </div>
+
+  <div class="aqx-container aqx-band__inner">
+    <div class="aqx-band__copy">
+      {%- if s.heading != blank -%}
+        <h2 class="aqx-heading h2">{{ s.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if s.text != blank -%}
+        <div class="aqx-band__text rte">{{ s.text }}</div>
+      {%- endif -%}
+      {%- if s.link_label != blank -%}
+        <a class="aqx-text-link aqx-band__link" href="{{ s.link_url | default: routes.root_url }}">
+          {{- s.link_label | escape -}}
+        </a>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="aqx-band__facts" role="list">
+          {%- for block in section.blocks -%}
+            <li class="aqx-band__fact" {{ block.shopify_attributes }}>
+              {% render 'aqx-icon', name: block.settings.icon %}
+              <span>{{ block.settings.text | escape }}</span>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .aqx-band {
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .aqx-band__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  /* Phones: choose which part of the photo survives the crop */
+  .aqx-band--focus-left .aqx-band__media img {
+    aspect-ratio: 1;
+    object-position: 0 50%;
+  }
+
+  .aqx-band--focus-right .aqx-band__media img {
+    object-position: 100% 50%;
+  }
+
+  .aqx-band__copy {
+    padding-block: 2.5rem var(--aqx-section-gap);
+  }
+
+  .aqx-band__text {
+    max-width: 48ch;
+    margin-top: 1rem;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+    font-size: 1.0625rem;
+  }
+
+  .aqx-band__text > :first-child {
+    margin-top: 0;
+  }
+
+  .aqx-band__link {
+    display: inline-block;
+    margin-top: 1.25rem;
+  }
+
+  .aqx-band__facts {
+    display: grid;
+    gap: 1rem;
+    margin: 1.9rem 0 0;
+    padding: 1.5rem 0 0;
+    border-top: 1px solid rgb(var(--color-foreground-rgb) / 0.16);
+    list-style: none;
+  }
+
+  .aqx-band__fact {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.35;
+  }
+
+  .aqx-band .aqx-icon {
+    color: var(--aqx-aqua);
+  }
+
+  @media screen and (min-width: 900px) {
+    .aqx-band {
+      display: flex;
+      align-items: center;
+      min-height: 40rem;
+    }
+
+    .aqx-band--bottom {
+      align-items: flex-end;
+    }
+
+    .aqx-band__media,
+    .aqx-band__media img {
+      position: absolute;
+      inset: 0;
+      aspect-ratio: auto;
+    }
+
+    .aqx-band__media {
+      z-index: -2;
+    }
+
+    .aqx-band--focus-left .aqx-band__media img {
+      aspect-ratio: auto;
+    }
+
+    /* Fade the photo into the section colour behind the text */
+    .aqx-band::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(
+        to left,
+        rgb(var(--aqx-band-bg) / 0.96) 0%,
+        rgb(var(--aqx-band-bg) / 0.86) 36%,
+        rgb(var(--aqx-band-bg) / 0.08) 68%
+      );
+    }
+
+    .aqx-band__copy {
+      width: 44%;
+      margin-inline-start: auto;
+      padding-block: 6.5rem;
+    }
+
+    .aqx-band__facts {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.25rem;
+    }
+
+    .aqx-band__fact {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.6rem;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "AquaBladeX photo band",
+  "tag": "section",
+  "class": "aqx-section",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Photo",
+      "info": "Leave empty to use a bundled brand photo. Keep the right half of the photo dark and calm for the text."
+    },
+    {
+      "type": "select",
+      "id": "bundled_photo",
+      "label": "Bundled photo",
+      "options": [
+        { "value": "proof", "label": "Water beads close-up" },
+        { "value": "story", "label": "Folding the towel" }
+      ],
+      "default": "proof"
+    },
+    {
+      "type": "select",
+      "id": "mobile_focus",
+      "label": "Part of the photo shown on phones",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Centre" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "content_position",
+      "label": "Text position on desktop",
+      "options": [
+        { "value": "center", "label": "Middle right" },
+        { "value": "bottom", "label": "Bottom right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#05080d"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Absorbs water instantly. No streaks left behind."
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>GSM is the weight of the microfiber per square metre. A heavier towel has more fibre to hold water, so it absorbs what is on the panel instead of pushing it around.</p>"
+    },
+    {
+      "type": "text",
+      "id": "link_label",
+      "label": "Link label"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "Link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "fact",
+      "name": "Fact",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "layers", "label": "Layers" },
+            { "value": "shield", "label": "Shield" },
+            { "value": "stitch", "label": "Stitched edge" },
+            { "value": "drop", "label": "Water drop" },
+            { "value": "clock", "label": "Clock" }
+          ],
+          "default": "layers"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "1300 and 1400 GSM"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "AquaBladeX photo band"
+    }
+  ]
+}
+{% endschema %}
